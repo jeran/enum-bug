@@ -16,28 +16,17 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            EnumBugTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Greeting("Android")
-                }
-            }
+            Type.One()
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
+enum class Type {
+    One,
+    Two;
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    EnumBugTheme {
-        Greeting("Android")
+    @Composable
+    operator fun invoke(input: String = "") {
+        requireNotNull(input)
     }
 }
